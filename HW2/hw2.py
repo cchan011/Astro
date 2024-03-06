@@ -30,3 +30,17 @@ print('A2 = '+str(A2))
 
 #they are about the same
 
+EarthPath = 'https://raw.githubusercontent.com/cchan011/Astro/main/HW2/Earth.txt'
+DucrosaPath = 'https://raw.githubusercontent.com/cchan011/Astro/main/HW2/Ducrosa.txt'
+Edata = np.genfromtxt(EarthPath, skip_header=55, skip_footer= 68,delimiter=',', names=['JDTDB','CalendarDate','X','Y','Z','VX','VY','VZ'])
+Ddata = np.genfromtxt(DucrosaPath, skip_header=61, skip_footer= 68, delimiter=',', names=['JDTDB','CalendarDate','X','Y','Z','VX','VY','VZ'])
+
+fig, ax = plt.subplots()
+
+ax.plot(Edata['X'], Edata['Y'], marker ='',ms=3, c='blue')
+ax.set_xlabel('X [km]')
+ax.set_ylabel('Y [km]')
+ax.set_title("Earth's Orbit")
+ax.set_aspect('equal')
+ax.grid()
+plt.show()
