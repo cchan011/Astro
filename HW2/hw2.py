@@ -17,11 +17,11 @@ Eph2 = Ducrosa2.ephemerides()
 print(Eph['datetime_str','delta','delta_rate','true_anom'])
 print(Eph2['datetime_str','delta','delta_rate','true_anom'])
 
-B1 = 2.81*(33.5795-33.3606)
+B1 = 2*np.pi*2.81*(33.5795-33.3606)
 h1 = 2.81
 A1 = (1/2)*B1*h1
 
-B2 = 3.08*(270.577-270.3941)
+B2 = 3.08*(270.577-270.3941)*2*np.pi
 h2 = 3.08
 A2 = (1/2)*B2*h2
 
