@@ -5,7 +5,7 @@ import requests
 from scipy.signal import find_peaks
 from scipy.optimize import fsolve
 
-light_link = "https://github.com/cchan011/Astro/blob/main/HW3/astro%20hw3%20pics/lightbulb.jpg?raw=true"
+light_link = "https://github.com/cchan011/Astro/blob/main/HW3/astro%20hw3%20pics/light.jpg?raw=true"
 gas_link = "https://github.com/cchan011/Astro/blob/main/HW3/astro%20hw3%20pics/gas.jpg?raw=true"
 red_link = "https://github.com/cchan011/Astro/blob/main/HW3/astro%20hw3%20pics/red_led_spectrum.jpg?raw=true"
 uv_link = "https://github.com/cchan011/Astro/blob/main/HW3/astro%20hw3%20pics/uv_led_spectrum.jpg?raw=true"
@@ -25,17 +25,15 @@ uvData = np.array(uv, dtype=int)
 
 #full pic
 '''
-lightplot = plt.imshow(light) #FIND OUT
-gasplot = plt.imshow(gas) #THE SAME AS LIGHTPLOT IF IT GOES CORRECTLY, AT LEAST WITHIN NEAR BALLPACK OF ROWS
+lightplot = plt.imshow(light) #1450 - 1750, 1600
+gasplot = plt.imshow(gas) #1600 - 1800, 1700
 redplot = plt.imshow(red) #1500 - 1700, 1600
 uvplot = plt.imshow(uv) #1500 - 1630, 1600
 '''
 
 #trimmed dataset
-'''
-lightData2 = lightData[lowerRow:higherRow,:]
-gasData2 = gasData[lowerRow:higherRow,:]
-'''
+lightData2 = lightData[1450:1750,:]
+gasData2 = gasData[1600:1800,:]
 redData2 = redData[1500:1700,:]
 uvData2 = uvData[1500:1630,:]
 
@@ -48,15 +46,12 @@ uvplot2 = plt.imshow(uvData2)
 '''
 
 #extracted line
-'''
-lightLine = 0 #change
-gasLine = 0 #change
-'''
+lightLine = 1600
+gasLine = 1700
 redLine = 1600
 uvLine = 1600
 
 #rgb values
-'''
 lightR = lightData[lightLine,:][:,0]
 lightG = lightData[lightLine,:][:,1]
 lightB = lightData[lightLine,:][:,2]
@@ -66,7 +61,6 @@ gasR = gasData[gasLine,:][:,0]
 gasG = gasData[gasLine,:][:,1]
 gasB = gasData[gasLine,:][:,2]
 gasAvg = gasR + gasG + gasB
-'''
 
 redR = redData[redLine,:][:,0]
 redG = redData[redLine,:][:,1]
@@ -107,6 +101,18 @@ ax2.set_xlabel('Wavelength [nm]')
 ax2.set_title('Calibrated Spectrum from mystery gas emission')
 '''
 
+
+fig = plt.figure()
+ax = plt.subplot()
+ax.plot(x, lightAvg, color='red', label = 'light')
+ax.set_title('CFB light spectrum')
+
+fig2 = plt.figure()
+ax2 = plt.subplot()
+ax2.plot(x, gasAvg, color='red', label = 'gas')
+ax2.set_title('Mystery light spectrum')
+
+
 fig3 = plt.figure()
 ax3 = plt.subplot()
 ax3.plot(x, redAvg, color='red', label = 'red')
@@ -120,7 +126,7 @@ ax4.set_title('UV LED light spectrum')
 RedPeak = redAvg.argmax()
 uvPeak = uvAvg.argmax()
 
-print('Red LED peak: (' + RedPeak + ',' + redAvg[RedPeak])
-print('UV LED peak: (' + uvPeak + ',' + uvAvg[uvPeak])
+print('Red LED peak: (' + str(RedPeak) + ',' + str(redAvg[RedPeak]))
+print('UV LED peak: (' + str(uvPeak) + ',' + str(uvAvg[uvPeak]))
 
 plt.show()
