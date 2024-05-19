@@ -2,8 +2,7 @@ import numpy as np
 from PIL import Image
 import matplotlib.pyplot as plt
 import requests
-from scipy.signal import find_peaks
-from scipy.optimize import fsolve
+
 
 #question 1
 Sun_link = "https://raw.githubusercontent.com/cchan011/Astro/main/HW4/latest_4096_HMII.jpg"
@@ -37,9 +36,10 @@ while a >= 0 and b <=4095:
     a -= 1
     b += 1
 
+#in order to find the edges of the Sun in pixel numbers, use the following two lines of code:
 #Zeros = [i for i, x in enumerate(IntensityData) if x == 0]
 #print(Zeros) 
-#Manual inspection shows that pixels 170 and 3927 are the edges.
+#using the zero array above, it shows that pixels 170 and 3927 are the edges.
 #so the photosphere radius takes up 2047-170 = 1877 pixels.
 scale = 696500 / 1877
 DataXAxis2 = np.linspace(start=0, stop=len(Avg), num=len(Avg))
